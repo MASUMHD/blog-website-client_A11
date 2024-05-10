@@ -11,7 +11,7 @@ const SocalLogin = () => {
   // navigation system
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location?.state?.from?.pathname || "/";
+  const from = location?.state || "/";
 
   const handalSocialLogin = socialProvider => {
     socialProvider()
@@ -27,6 +27,8 @@ const SocalLogin = () => {
             timer: 1500
         });
     })
+   
+
   }
 
   return (

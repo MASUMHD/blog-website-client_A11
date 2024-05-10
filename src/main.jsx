@@ -13,6 +13,7 @@ import Wishlist from "./Component/Page/Wishlist";
 import LogIn from "./Component/LogIn";
 import Register from "./Component/Register";
 import AuthProvider from "./AuthProvider/AuthProvider";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,9 @@ const router = createBrowserRouter([
       },
       {
         path: "/addblog",
-        element: <AddBlog />,
+        element: <PrivateRoute>
+          <AddBlog />
+        </PrivateRoute>,
       },
       {
         path: "/allblogs",

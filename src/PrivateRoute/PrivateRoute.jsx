@@ -2,9 +2,8 @@ import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "../Hook/useAuth";
 import { Audio } from "react-loader-spinner";
 
-
-const PrivateRoute = ({Children}) => {
-    const {user, loading} = useAuth();
+const PrivateRoute = ({ children }) => {
+    const { user, loading } = useAuth();
     const location = useLocation();
 
     if(loading){
@@ -25,7 +24,7 @@ const PrivateRoute = ({Children}) => {
 
     return (
         <div>
-            {Children}
+            {children}
         </div>
     );
 };

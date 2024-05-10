@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../Hook/useAuth";
+import webName from "../assets/Sport News.png"
 
 const NabBar = () => {
   const { user, logOut } = useAuth();
@@ -27,9 +28,9 @@ const NabBar = () => {
   );
 
   return (
-    <div className="">
+    <div className="bg-gray-300">
       <div className=" container mx-auto md:pl-20 md:pr-20 pt-2 ">
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-gray-300">
           <div className="navbar-start">
             <div className="dropdown">
               <div
@@ -61,7 +62,8 @@ const NabBar = () => {
             </div>
             <a className="btn btn-ghost text-xl md:text-3xl md:font-extrabold">
               <Link to="/">
-                News <span className="text-green-500">BLOG</span>
+                <img className=" w-24 md:w-44" src={webName} alt="" />
+                {/* News <span className="text-green-500">BLOG</span> */}
               </Link>
             </a>
           </div>
@@ -121,7 +123,7 @@ const NabBar = () => {
                     </div>
                     <ul
                       tabIndex={0}
-                      className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+                      className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-0 md:w-52 "
                     >
                       <li className="rounded-lg bg-green-300 border-2 border-slate-500">
                         <Link to="" className="font-bold">
