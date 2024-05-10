@@ -14,6 +14,7 @@ import LogIn from "./Component/LogIn";
 import Register from "./Component/Register";
 import AuthProvider from "./AuthProvider/AuthProvider";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import Details from "./Component/Details";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+        loader: () => fetch('http://localhost:5000/allBlogs'),
       },
       {
         path: "/addblog",
@@ -51,6 +53,11 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register />,
       },
+      {
+        path: "/Details/:id",
+        element: <Details />,
+        loader: ({ params }) => fetch(`http://localhost:5000/allBlogs/${params.id}`),
+      }
     ],
   },
 ]);

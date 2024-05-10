@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 const AddBlog = () => {
   const handelSubmit = (e) => {
     e.preventDefault();
@@ -15,6 +17,27 @@ const AddBlog = () => {
       image,
     };
     console.log(newBlog);
+
+    // send data to server
+    fetch("http://localhost:5000/addBlogs", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newBlog),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Success!",
+            text: "Item added successfully",
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+        }
+      });
   };
   return (
     <div>
@@ -53,8 +76,13 @@ const AddBlog = () => {
                     className="w-full p-2 rounded-md "
                   >
                     <option value="celtic">Celtic your category</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
+                    <option value="Basketball">Basketball</option>
+                    <option value="Running">Running</option>
+                    <option value="Soccer">Soccer</option>
+                    <option value="Tennis">Tennis</option>
+                    <option value="Football">Football</option>
+                    <option value="Swimming">Swimming</option>
+                    <option value="Volleyball">Volleyball</option>
                   </select>
                 </div>
 
