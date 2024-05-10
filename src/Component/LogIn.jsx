@@ -1,11 +1,16 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEyeSlash, FaRegEye } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocalLogin from "./SocalLogin";
+import useAuth from "../Hook/useAuth";
+import Swal from "sweetalert2";
 
 const LogIn = () => {
   const [ShowPassword, setShowPassword] = useState(false);
+  const { loginUser } = useAuth();
+  const [Error, setError] = useState("");
+
 
   const {
     register,
@@ -13,8 +18,39 @@ const LogIn = () => {
     watch,
     formState: { errors },
   } = useForm();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state || "/";
+
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
+
+    const { email, password } = data;
+    loginUser(email, password)
+      .then((result) => {
+        if(result.user){
+            navigate(from)
+        }
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: "Login Successful",
+          showConfirmButton: false,
+          timer: 1500
+      });
+        // console.log(result.user);
+      })
+      .catch((error) => {
+        // console.log(error)
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Password or Email is not correct. Please register first!",
+          footer: '<a href="#">Why do I have this issue?</a>'
+      });
+        setError(error.message);
+      });
   };
 
   return (

@@ -1,30 +1,30 @@
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../Hook/useAuth";
 
 const NabBar = () => {
+  const { user, logOut } = useAuth();
 
-    const { user, logOut} = ''
+  const nabLinks = (
+    <>
+      <li className="text-base mr-2">
+        <NavLink to="/">Home</NavLink>
+      </li>
 
-    const nabLinks = (
-        <>
-          <li className="text-base mr-2">
-            <NavLink to="/">Home</NavLink>
-          </li>
-    
-          <li className="text-base mr-2">
-            <NavLink to="/addblog">Add Blog</NavLink>
-          </li>
-    
-          <li className="text-base mr-2">
-            <NavLink to="/allblogs">All blogs</NavLink>
-          </li>
-          <li className="text-base mr-2">
-            <NavLink to="/featuredblogs">Featured Blogs</NavLink>
-          </li>
-          <li className="text-base mr-2">
-            <NavLink to="/wishlist">Wishlist</NavLink>
-          </li>
-        </>
-      );
+      <li className="text-base mr-2">
+        <NavLink to="/addblog">Add Blog</NavLink>
+      </li>
+
+      <li className="text-base mr-2">
+        <NavLink to="/allblogs">All blogs</NavLink>
+      </li>
+      <li className="text-base mr-2">
+        <NavLink to="/featuredblogs">Featured Blogs</NavLink>
+      </li>
+      <li className="text-base mr-2">
+        <NavLink to="/wishlist">Wishlist</NavLink>
+      </li>
+    </>
+  );
 
   return (
     <div className="">
@@ -60,7 +60,9 @@ const NabBar = () => {
               </ul>
             </div>
             <a className="btn btn-ghost text-xl md:text-3xl md:font-extrabold">
-              A B C D
+              <Link to="/">
+                News <span className="text-green-500">BLOG</span>
+              </Link>
             </a>
           </div>
           <div className="navbar-center hidden lg:flex ">
@@ -110,36 +112,27 @@ const NabBar = () => {
                   </label>
                 </div> */}
 
-                <div className="dropdown dropdown-hover">
-                  <div tabIndex={0} role="button" className="btn m-1">
-                    <div className="w-12">
-                      <img
-                        className="rounded-full "
-                        src={user?.photoURL || "hello"}
-                      />
+                <div className="flex items-center gap-2">
+                  <div className="dropdown dropdown-hover">
+                    <div tabIndex={0} role="button" className="btn m-1">
+                      <div className="w-12">
+                        <img className="rounded-full " src={user?.photoURL} />
+                      </div>
                     </div>
+                    <ul
+                      tabIndex={0}
+                      className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+                    >
+                      <li className="rounded-lg bg-green-300 border-2 border-slate-500">
+                        <Link to="" className="font-bold">
+                          {user?.displayName}
+                        </Link>
+                      </li>
+                    </ul>
                   </div>
-                  <ul
-                    tabIndex={0}
-                    className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 pr-5"
-                  >
-                    <li className="rounded-lg bg-green-300 border-2 border-slate-500">
-                      <Link to="/profile" className="font-bold">
-                        {user?.displayName || "not found"}
-                      </Link>
-                    </li>
-                    <li className="font-bold">
-                      <Link to="/profile">Profile</Link>
-                    </li>
-                    <li className="font-bold">
-                      <Link
-                        onClick={logOut}
-                        className="btn btn-error text-white"
-                      >
-                        Log Out
-                      </Link>
-                    </li>
-                  </ul>
+                  <button onClick={logOut} className="btn btn-error text-white">
+                    Log Out
+                  </button>
                 </div>
               </div>
             ) : (
