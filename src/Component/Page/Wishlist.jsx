@@ -82,7 +82,7 @@ useEffect(() => {
                     onClick={() => handleDelete(data._id)}
                     className="btn bg-green-400 rounded-full w-28  justify-center border-b-4 border-sky-500 hover:border-fuchsia-600 hover:bg-sky-500 hover:text-white"
                   >
-                   Remove Wishlist
+                   Remove
                   </button>
                 </div>
               </div>

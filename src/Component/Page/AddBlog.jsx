@@ -43,7 +43,7 @@ const AddBlog = () => {
         if (data.insertedId) {
           Swal.fire({
             title: "Success!",
-            text: "Item added successfully",
+            text: "Blog added successfully",
             icon: "success",
             confirmButtonText: "Cool",
           });
@@ -52,17 +52,17 @@ const AddBlog = () => {
   };
   return (
     <div>
-      <div className="mt-1 mb-8">
+      <div className="mt-10 mb-8">
         <section className="p-6 rounded-2">
           <form
             onSubmit={handelSubmit}
             noValidate=""
             className="container flex flex-col mx-auto space-y-12"
           >
-            <fieldset className="grid  gap-6 p-6 mx-auto rounded-md shadow-sm bg-sky-300">
-              <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
-                <div className="col-span-full sm:col-span-3">
-                  <label htmlFor="firstname" className="text-sm">
+            <fieldset className="grid  gap-6 p-6 mx-auto rounded-xl shadow-2xl shadow-black border-4 border-black bg-slate-100">
+              <div className="grid grid-cols-12 gap-4 col-span-full lg:col-span-6">
+                <div className="col-span-full sm:col-span-6">
+                  <label htmlFor="firstname" className="text-xl">
                     Title
                   </label>
                   <input
@@ -71,11 +71,11 @@ const AddBlog = () => {
                     name="title"
                     defaultValue=""
                     placeholder="Title"
-                    className="w-full p-2 rounded-md "
+                    className="w-full p-2 rounded-md border-2 border-gray-500"
                   />
                 </div>
                 <div className="col-span-full sm:col-span-3">
-                  <label htmlFor="firstname" className="text-sm">
+                  <label htmlFor="firstname" className="text-xl">
                     Category
                   </label>
 
@@ -84,7 +84,7 @@ const AddBlog = () => {
                     name="category"
                     placeholder="Select your customization"
                     type="text"
-                    className="w-full p-2 rounded-md "
+                    className="w-full p-2 rounded-md border-2 border-gray-500"
                   >
                     <option value="celtic">Celtic your category</option>
                     <option value="Basketball">Basketball</option>
@@ -98,7 +98,7 @@ const AddBlog = () => {
                 </div>
 
                 <div className="col-span-full ">
-                  <label htmlFor="firstname" className="text-sm">
+                  <label htmlFor="firstname" className="text-xl">
                     Short description
                   </label>
                   <input
@@ -106,11 +106,12 @@ const AddBlog = () => {
                     type="text"
                     name="short_description"
                     placeholder="Short description"
-                    className="w-full p-2 rounded-md "
+                    className="w-full p-2 rounded-md border-2 border-gray-500"
                   />
+                  
                 </div>
                 <div className="col-span-full ">
-                  <label htmlFor="firstname" className="text-sm">
+                  <label htmlFor="firstname" className="text-xl">
                     Long description
                   </label>
                   <input
@@ -118,12 +119,12 @@ const AddBlog = () => {
                     type="text"
                     name="long_description"
                     placeholder="Long description"
-                    className="w-full p-2 rounded-md "
+                    className="w-full p-2 rounded-md border-2 border-gray-500"
                   />
                 </div>
 
                 <div className="col-span-full">
-                  <label htmlFor="address" className="text-sm">
+                  <label htmlFor="address" className="text-xl">
                     Image URL
                   </label>
                   <input
@@ -131,13 +132,13 @@ const AddBlog = () => {
                     type="text"
                     name="imageURL"
                     placeholder="Image URL"
-                    className="w-full p-2 rounded-md "
+                    className="w-full p-2 rounded-md border-2 border-gray-500"
                   />
                 </div>
 
                 <div className="col-span-full">
                   <input
-                    className="btn bg-rose-500 w-full"
+                    className="btn btn-outline btn-success border-2 bg-green-100 text-xl w-full"
                     type="submit"
                     value="Submit"
                   />

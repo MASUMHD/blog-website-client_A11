@@ -24,6 +24,8 @@ const Home = () => {
         Newsletter
       </div>
       <NewsletterSection />
+
+      
     </div>
   );
 };
