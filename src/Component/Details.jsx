@@ -9,7 +9,7 @@ const Details = () => {
     short_description,
     long_description,
     image_url,
-    _id,
+    
   } = vewDetails;
   return (
     <div className="">
