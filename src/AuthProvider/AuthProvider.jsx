@@ -8,6 +8,7 @@ import {
 import { createContext, useEffect, useState } from "react";
 import auth from "../Firebase/Firebase.config";
 import { GoogleAuthProvider } from "firebase/auth";
+import axios from "axios";
 
 export const AuthContext = createContext();
 // Google provider
@@ -42,6 +43,12 @@ const AuthProvider = ({ children }) => {
     signOut(auth);
   };
 
+  // wishlist
+  const addWishlist = (data) => {
+    setLoading(true);
+    return axios.post("http://localhost:5000/addWishlist", data)
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -62,6 +69,7 @@ const AuthProvider = ({ children }) => {
     loginUser,
     googleLogin,
     logOut,
+    addWishlist
   };
 
   return (

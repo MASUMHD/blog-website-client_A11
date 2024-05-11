@@ -4,6 +4,8 @@ import SingleBlogs from "../SingleBlogs";
 
 const Home = () => {
     const blogs = useLoaderData();
+
+
   return (
     <div>
       <Bannar />
@@ -20,6 +22,7 @@ const Home = () => {
           ))
         }
       </div>
+
     </div>
   );
 };

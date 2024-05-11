@@ -1,6 +1,14 @@
 import Swal from "sweetalert2";
+import useAuth from "../../Hook/useAuth";
 
 const AddBlog = () => {
+  const { user } = useAuth();
+  // console.log(user);
+  // const userDetals = {
+  //   name: user?.displayName,
+  //   email: user?.email,
+  //   img: user?.photoURL,
+  // };
   const handelSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -8,13 +16,16 @@ const AddBlog = () => {
     const category = form.category.value;
     const short_description = form.short_description.value;
     const long_description = form.long_description.value;
-    const image = form.imageURL.value;
+    const image_url = form.imageURL.value;
     const newBlog = {
       title,
       category,
       short_description,
       long_description,
-      image,
+      image_url,
+      name: user?.displayName,
+      email: user?.email,
+      userImage: user?.photoURL,
     };
     console.log(newBlog);
 

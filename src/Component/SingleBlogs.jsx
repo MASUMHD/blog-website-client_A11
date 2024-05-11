@@ -1,7 +1,35 @@
 import { Link } from "react-router-dom";
+import useAuth from "../Hook/useAuth";
+import moment from "moment";
+import Swal from "sweetalert2";
 
 const SingleBlogs = ({ blog }) => {
+  const { user, addWishlist } = useAuth();
   const { image_url, title, short_description, category, _id } = blog;
+  const dateAndTime = moment().format("L, h:mm a");
+  //   console.log(dateAndTime);
+  const data = {
+    image_url,
+    title,
+    short_description,
+    category,
+    email: user?.email,
+    dateAndTime,
+  };
+  const handleWishList = () => {
+    addWishlist(data)
+    .then((res) => {
+      console.log(res.data);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Your wishlist has been saved",
+        showConfirmButton: false,
+        timer: 1500
+      });
+      
+    });
+  };
 
   return (
     <div>
@@ -31,11 +59,13 @@ const SingleBlogs = ({ blog }) => {
                   Details
                 </button>
               </Link>
-              <Link to={`/Details/${_id}`}>
-                <button className="btn bg-green-400 rounded-full w-28  justify-center border-b-4 border-sky-500 hover:border-fuchsia-600 hover:bg-sky-500 hover:text-white">
-                  Wishlist
-                </button>
-              </Link>
+
+              <button
+                onClick={handleWishList}
+                className="btn bg-green-400 rounded-full w-28  justify-center border-b-4 border-sky-500 hover:border-fuchsia-600 hover:bg-sky-500 hover:text-white"
+              >
+                Wishlist
+              </button>
             </div>
           </div>
         </div>
