@@ -13,7 +13,7 @@ useEffect(() => {
         .then((data) => {
             setWishlistData(data);
         });
-}, [ wishlist ]);
+},[wishlist]);
 
   const handleDelete = (_id) => {
       
@@ -49,9 +49,9 @@ useEffect(() => {
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10  md:ml-20 md:mr-10">
       {wishlist.map((data) => (
         <div key={data._id}>
-          <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 pr-5 mt-10 ml-3">
+          <div className="max-w-sm p-6 bg-white border-2 border-gray-200 rounded-lg shadow-xl shadow-gray-300 pr-5 mt-10 ml-3">
             <div className="flex flex-col items-center ">
-              <div className="max-w-xl h-[520px] p-4 rounded-md shadow-md dark:bg-red-200 dark:text-gray-900">
+              <div className="max-w-xl h-[520px] p-4 rounded-md  shadow-xl border dark:text-gray-900">
                 <img
                   src={data.image_url}
                   alt=""
@@ -75,14 +75,14 @@ useEffect(() => {
                 </div>
                 <div className="flex gap-2 justify-around">
                   <Link to={`/Details/${data._id}`}>
-                    <button className="btn bg-green-400 rounded-full w-28 justify-center border-b-4 border-sky-500 hover:border-fuchsia-600 hover:bg-sky-500 hover:text-white">
+                    <button className="btn btn-outline btn-info rounded-full w-28 justify-center border-b-4 border-sky-500 hover:border-fuchsia-600 hover:bg-sky-500 hover:text-white">
                       Details
                     </button>
                   </Link>
 
                   <button
                     onClick={() => handleDelete(data._id)}
-                    className="btn bg-green-400 rounded-full w-28  justify-center border-b-4 border-sky-500 hover:border-fuchsia-600 hover:bg-sky-500 hover:text-white"
+                    className="btn btn-outline btn-error rounded-full w-28  justify-center border-b-4 border-rose-500 hover:border-fuchsia-600 hover:bg-sky-500 hover:text-white"
                   >
                    Remove
                   </button>

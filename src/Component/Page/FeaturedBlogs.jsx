@@ -1,5 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 
+
+
 const FeaturedBlogs = () => {
   const blogs = useLoaderData();
 
@@ -12,7 +14,7 @@ const FeaturedBlogs = () => {
 
       <div>
         <div className="p-2">
-          <div className="overflow-x-auto mt-5 mb-8  rounded-xl bg-green-200 md:ml-20 md:mr-10">
+          <div className="overflow-x-auto mt-5 mb-8  rounded-xl bg-green-200 md:ml-20 md:mr-20">
             <table className="table">
               {/* head */}
               <thead className="bg-base-300">

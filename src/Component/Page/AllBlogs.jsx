@@ -3,6 +3,7 @@ import Blog from "../Blog";
 
 const AllBlogs = () => {
   const blogs = useLoaderData();
+  
 
   return (
     <div>

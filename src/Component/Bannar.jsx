@@ -6,7 +6,7 @@ const Bannar = () => {
             <div className="hero relative  pl-20 pt-5 justify-start flex-1">
                 <img className="" src={img1} alt="" />
                 <div className="text-4xl md:text-5xl lg:text-7xl absolute text-gray-700 pr-6 md-[100px] lg:pr-[140px] font-extrabold ">
-                    TOP <br /> SCORER TO <br /> THE FINAL <br /> MATCH
+                    TOP <br /> SCORER TO <br /> THE FINAL <br /> BLOGS
                 </div>
 
             </div>

@@ -1,11 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
 import useAuth from "../Hook/useAuth";
 import moment from "moment";
-import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const Blog = ({ blog }) => {
     const { user, addWishlist } = useAuth();
   const { image_url, title, short_description, category, _id } = blog;
+
+  
+
+  const navigate = useNavigate();
 
   const dateAndTime = moment().format("L, h:mm a");
   //   console.log(dateAndTime);
@@ -19,27 +23,26 @@ const Blog = ({ blog }) => {
   };
 
   const handleWishList = () => {
+    if (!user) {
+      navigate("/login");
+      return;
+    }
     addWishlist(data)
     .then((res) => {
       console.log(res.data);
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Your wishlist has been saved",
-        showConfirmButton: false,
-        timer: 1500
-      });
-      
+      toast.success("Your wishlist has been saved");
+
+      navigate('/wishlist');
     });
   };
   return (
     <div>
       <div
         key={_id}
-        className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 pr-5 mt-10 ml-3"
+        className="max-w-sm p-6 bg-white border-2 border-gray-200  rounded-lg shadow-xl shadow-gray-300 pr-5 mt-10 ml-3"
       >
         <div className="flex flex-col items-center ">
-          <div className="max-w-xl h-[520px] p-4 rounded-md shadow-md dark:bg-red-200 dark:text-gray-900">
+          <div className="max-w-xl h-[520px] p-4 rounded-md shadow-xl border dark:text-gray-900">
             <img
               src={image_url}
               alt=""
@@ -63,14 +66,14 @@ const Blog = ({ blog }) => {
             </div>
             <div className="flex gap-2 justify-around">
               <Link to={`/Details/${_id}`}>
-                <button className="btn bg-green-400 rounded-full w-28 justify-center border-b-4 border-sky-500 hover:border-fuchsia-600 hover:bg-sky-500 hover:text-white">
+                <button className="btn btn-outline btn-info rounded-full w-28 justify-center border-b-4 border-sky-500 hover:border-fuchsia-600 hover:bg-sky-500 hover:text-white">
                   Details
                 </button>
               </Link>
 
               <button
                 onClick={handleWishList}
-                className="btn bg-green-400 rounded-full w-28  justify-center border-b-4 border-sky-500 hover:border-fuchsia-600 hover:bg-sky-500 hover:text-white"
+                className="btn btn-outline btn-success rounded-full w-28  justify-center border-b-4 border-sky-500 hover:border-fuchsia-600 hover:bg-sky-500 hover:text-white"
               >
                 Wishlist
               </button>

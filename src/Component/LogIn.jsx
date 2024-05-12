@@ -10,6 +10,7 @@ const LogIn = () => {
   const [ShowPassword, setShowPassword] = useState(false);
   const { loginUser } = useAuth();
   const [Error, setError] = useState("");
+  
 
 
   const {
@@ -55,8 +56,8 @@ const LogIn = () => {
 
   return (
     <div>
-      <div className="mb-10">
-        <div className="mx-auto flex mt-5 border-gray-600 border-2 flex-col max-w-md p-6 rounded-md sm:p-10 dark:bg-gray-50 dark:text-gray-800">
+      <div className="mb-10 p-3">
+        <div className="mx-auto  flex mt-5 border-gray-600 border-2 flex-col max-w-md p-6 rounded-md sm:p-10 dark:bg-gray-50 dark:text-gray-800">
           <div className="mb-2 text-center">
             <h1 className="my-3 text-4xl font-bold">Log in</h1>
             <p className="text-sm dark:text-gray-600">
