@@ -7,7 +7,7 @@ const PrivateRoute = ({ children }) => {
     const location = useLocation();
 
     if(loading){
-        return <div className="text-center text-7xl   "><Audio
+        return <div className="text-center text-7xl ml-40 md:ml-60 lg:ml-[700px] mt-20 "><Audio
         height="80"
         width="80"
         radius="9"

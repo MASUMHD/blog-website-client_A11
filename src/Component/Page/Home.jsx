@@ -9,8 +9,8 @@ const Home = () => {
   return (
     <div>
       <Bannar />
-      <div className="mt-16 mb-14">
-        <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-center">
+      <div className="mt-20 mb-12">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center">
           <span className="">Recent</span> Blog <br />{" "}
           <span className="text-fuchsia-500">Posts</span>
         </h1>
@@ -20,8 +20,8 @@ const Home = () => {
           <SingleBlogs key={blog._id} blog={blog}></SingleBlogs>
         ))}
       </div>
-      <div className="mb-20 text-4xl md:text-5xl lg:text-7xl font-bold  text-center">
-        Newsletter
+      <div className="mb-20 text-2xl md:text-3xl lg:text-5xl font-bold  text-center">
+       Sing up for your <span>Newsletter</span>
       </div>
       <NewsletterSection />
 

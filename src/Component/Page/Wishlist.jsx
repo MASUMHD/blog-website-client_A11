@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAuth from "../../Hook/useAuth";
 
 const Wishlist = () => {
+  const { user } = useAuth();
 const [wishlist, setWishlistData] = useState([]);
 
 useEffect(() => {
-    fetch("http://localhost:5000/wishlist")
+    fetch(`http://localhost:5000/wishlist?email=${user?.email}`)
         .then((res) => res.json())
         .then((data) => {
             setWishlistData(data);
