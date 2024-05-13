@@ -15,6 +15,7 @@ const SingleBlogs = ({ blog }) => {
     category,
     email: user?.email,
     dateAndTime,
+    blogId: _id
   };
 
   const navigate = useNavigate();

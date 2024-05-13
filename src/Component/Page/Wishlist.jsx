@@ -5,45 +5,45 @@ import useAuth from "../../Hook/useAuth";
 
 const Wishlist = () => {
   const { user } = useAuth();
-const [wishlist, setWishlistData] = useState([]);
+  const [wishlist, setWishlistData] = useState([]);
 
-useEffect(() => {
-    fetch(`http://localhost:5000/wishlist?email=${user?.email}`)
+  useEffect(() => {
+    if (user?.email) {
+      fetch(`http://localhost:5000/wishlist?email=${user?.email}`)
         .then((res) => res.json())
         .then((data) => {
-            setWishlistData(data);
+          setWishlistData(data);
         });
-},[wishlist]);
+    }
+  }, [ user?.email]);
 
   const handleDelete = (_id) => {
-      
     Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          fetch(`http://localhost:5000/wishlist/${_id}`, {
-            method: "DELETE",
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              if (data.deletedCount > 0) {
-                Swal.fire("Deleted!", "Your file has been deleted.", "success");
-                const remaining = wishlist.filter(
-                  (product) => product._id !== _id
-                );
-                setWishlistData(remaining); 
-              }
-            });
-        }
-      })
-  }
-
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/wishlist/${_id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+              const remaining = wishlist.filter(
+                (product) => product._id !== _id
+              );
+              setWishlistData(remaining);
+            }
+          });
+      }
+    });
+  };
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10  md:ml-20 md:mr-10">
@@ -74,7 +74,7 @@ useEffect(() => {
                   </p>
                 </div>
                 <div className="flex gap-2 justify-around">
-                  <Link to={`/Details/${data._id}`}>
+                  <Link to={`/Details/${data.blogId}`}>
                     <button className="btn btn-outline btn-info rounded-full w-28 justify-center border-b-4 border-sky-500 hover:border-fuchsia-600 hover:bg-sky-500 hover:text-white">
                       Details
                     </button>
@@ -84,7 +84,7 @@ useEffect(() => {
                     onClick={() => handleDelete(data._id)}
                     className="btn btn-outline btn-error rounded-full w-28  justify-center border-b-4 border-rose-500 hover:border-fuchsia-600 hover:bg-sky-500 hover:text-white"
                   >
-                   Remove
+                    Remove
                   </button>
                 </div>
               </div>
