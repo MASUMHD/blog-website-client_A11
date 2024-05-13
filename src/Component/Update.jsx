@@ -1,14 +1,20 @@
+import { useLoaderData } from "react-router-dom";
+import useAuth from "../Hook/useAuth";
 import Swal from "sweetalert2";
-import useAuth from "../../Hook/useAuth";
 
-const AddBlog = () => {
+const Update = () => {
   const { user } = useAuth();
-  // console.log(user);
-  // const userDetals = {
-  //   name: user?.displayName,
-  //   email: user?.email,
-  //   img: user?.photoURL,
-  // };
+  const blogsData = useLoaderData();
+
+  const {
+    title,
+    category,
+    short_description,
+    long_description,
+    image_url,
+    _id,
+  } = blogsData;
+
   const handelSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -27,11 +33,10 @@ const AddBlog = () => {
       email: user?.email,
       userImage: user?.photoURL,
     };
-    console.log(newBlog);
-
+    console.log("nnnnnnnnnnn", newBlog);
     // send data to server
-    fetch("http://localhost:5000/addBlogs", {
-      method: "POST",
+    fetch(`http://localhost:5000/allBlogs/${_id}`, {
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },
@@ -40,10 +45,10 @@ const AddBlog = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data.insertedId) {
+        if (data.modifiedCount > 0) {
           Swal.fire({
             title: "Success!",
-            text: "Blog added successfully",
+            text: "Update successfully",
             icon: "success",
             confirmButtonText: "Cool",
           });
@@ -53,6 +58,9 @@ const AddBlog = () => {
   return (
     <div>
       <div className="mt-10 mb-8">
+        <h1 className="text-5xl font-bold text-center mb-5">
+          Update Blog Post{" "}
+        </h1>
         <section className="p-6 rounded-2">
           <form
             onSubmit={handelSubmit}
@@ -69,7 +77,7 @@ const AddBlog = () => {
                     id="firstname"
                     type="text"
                     name="title"
-                    defaultValue=""
+                    defaultValue={title}
                     placeholder="Title"
                     className="w-full p-2 rounded-md border-2 border-gray-500"
                   />
@@ -82,6 +90,7 @@ const AddBlog = () => {
                   <select
                     id=""
                     name="category"
+                    defaultValue={category}
                     placeholder="Select your customization"
                     type="text"
                     className="w-full p-2 rounded-md border-2 border-gray-500"
@@ -105,10 +114,10 @@ const AddBlog = () => {
                     id="firstname"
                     type="text"
                     name="short_description"
+                    defaultValue={short_description}
                     placeholder="Short description"
                     className="w-full p-2 rounded-md border-2 border-gray-500"
                   />
-                  
                 </div>
                 <div className="col-span-full ">
                   <label htmlFor="firstname" className="text-xl">
@@ -118,11 +127,11 @@ const AddBlog = () => {
                     id="firstname"
                     type="text"
                     name="long_description"
+                    defaultValue={long_description}
                     placeholder="Long description"
                     className="w-full p-2 rounded-md h-32 border-2 border-gray-500"
                   ></textarea>
                 </div>
-
                 <div className="col-span-full">
                   <label htmlFor="address" className="text-xl">
                     Image URL
@@ -131,6 +140,7 @@ const AddBlog = () => {
                     id="address"
                     type="text"
                     name="imageURL"
+                    defaultValue={image_url}
                     placeholder="Image URL"
                     className="w-full p-2 rounded-md border-2 border-gray-500"
                   />
@@ -140,7 +150,7 @@ const AddBlog = () => {
                   <input
                     className="btn btn-outline btn-success border-2 bg-green-100 text-xl w-full"
                     type="submit"
-                    value="Submit"
+                    value="Update"
                   />
                 </div>
               </div>
@@ -152,4 +162,4 @@ const AddBlog = () => {
   );
 };
 
-export default AddBlog;
+export default Update;

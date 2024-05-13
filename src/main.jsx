@@ -15,6 +15,7 @@ import Register from "./Component/Register";
 import AuthProvider from "./AuthProvider/AuthProvider";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import Details from "./Component/Details";
+import Update from "./Component/Update";
 
 const router = createBrowserRouter([
   {
@@ -51,7 +52,7 @@ const router = createBrowserRouter([
           <PrivateRoute>
             <Wishlist />
           </PrivateRoute>
-        )
+        ),
       },
       {
         path: "/login",
@@ -66,6 +67,16 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Details />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/allBlogs/${params.id}`),
+      },
+      {
+        path: "update/:id",
+        element: (
+          <PrivateRoute>
+            <Update />
           </PrivateRoute>
         ),
         loader: ({ params }) =>

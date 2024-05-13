@@ -24,6 +24,7 @@ const SingleBlogs = ({ blog }) => {
       navigate('/login')
       return
     }
+    
 
     addWishlist(data)
     .then((res) => {
