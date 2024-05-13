@@ -49,7 +49,7 @@ const AllBlogs = () => {
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20  md:ml-20 md:mr-10">
-        { blogs.length === 0 ? <p>No blogs found.</p> :
+        { blogs.length === 0 ? <p className="text-center text-5xl font-bold">No blogs found.</p> :
         blogs.map((blog) => (
           <Blog key={blog._id} blog={blog}></Blog>
         ))}
