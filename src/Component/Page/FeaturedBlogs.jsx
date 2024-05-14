@@ -10,7 +10,14 @@ const FeaturedBlogs = () => {
   const blogs = useLoaderData();
   // console.log(blogs)
 
-  const data = useMemo(() => blogs, []);
+  const blogsCount = blogs.map(blog => ({
+    ...blog,wordCount: blog.long_description.split('').length
+  }))
+  const sortedBLogs = blogsCount.sort((a, b) => b.wordCount - a.wordCount)
+  const topBlogs = sortedBLogs.slice(0, 10)
+
+  const data = useMemo(() => topBlogs, [topBlogs]);
+
 
   const columns = [
     {
@@ -47,9 +54,9 @@ const FeaturedBlogs = () => {
   });
   return (
     <div>
-      <h1>Featured Blogs {blogs.length}</h1>
+      {/* <h1>Featured Blogs {blogs.length}</h1> */}
 
-      <div className="overflow-x-auto mt-5 mb-8 rounded-xl md:ml-20 md:mr-20 w3-container">
+      <div className="overflow-x-auto mt-8 mb-8 rounded-xl md:ml-20 md:mr-20 w3-container">
         <table className="w3-table-all">
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
