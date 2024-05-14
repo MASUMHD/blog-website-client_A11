@@ -4,6 +4,7 @@ import SingleBlogs from "../SingleBlogs";
 import NewsletterSection from "../NewsletterSection";
 import OurTem from "../OurTem";
 import { HiArrowSmRight } from "react-icons/hi";
+import Last from "../Last";
 
 const Home = () => {
   const blogs = useLoaderData();
@@ -33,6 +34,9 @@ const Home = () => {
       <NewsletterSection />
       <div className="md:ml-20 md:mr-20 mt-16">
         <OurTem></OurTem>
+      </div>
+      <div className="md:ml-20 md:mr-20 mt-16">
+        <Last />
       </div>
     </div>
   );
