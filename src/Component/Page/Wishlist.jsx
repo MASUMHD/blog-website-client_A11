@@ -9,7 +9,7 @@ const Wishlist = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:5000/wishlist?email=${user?.email}`)
+      fetch(`http://localhost:5000/wishlist?email=${user?.email}`,{credentials: 'include'})
         .then((res) => res.json())
         .then((data) => {
           setWishlistData(data);
@@ -73,7 +73,7 @@ const Wishlist = () => {
                     {data.short_description}
                   </p>
                 </div>
-                <div className="flex gap-2 justify-around">
+                <div className="flex gap-2 justify-around mt-8">
                   <Link to={`/Details/${data.blogId}`}>
                     <button className="btn btn-outline btn-info rounded-full w-28 justify-center border-b-4 border-sky-500 hover:border-fuchsia-600 hover:bg-sky-500 hover:text-white">
                       Details

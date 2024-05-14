@@ -64,7 +64,7 @@ const Blog = ({ blog }) => {
                 {short_description}
               </p>
             </div>
-            <div className="flex gap-2 justify-around">
+            <div className="flex gap-2 justify-around mt-8">
               <Link to={`/Details/${_id}`}>
                 <button className="btn btn-outline btn-info rounded-full w-28 justify-center border-b-4 border-sky-500 hover:border-fuchsia-600 hover:bg-sky-500 hover:text-white">
                   Details

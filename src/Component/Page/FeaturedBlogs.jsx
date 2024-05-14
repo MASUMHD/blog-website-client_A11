@@ -56,7 +56,7 @@ const FeaturedBlogs = () => {
     <div>
       {/* <h1>Featured Blogs {blogs.length}</h1> */}
 
-      <div className="overflow-x-auto mt-8 mb-8 rounded-xl md:ml-20 md:mr-20 w3-container">
+      <div className="overflow-x-auto mt-12 mb-6 rounded-xl md:ml-20 md:mr-20 w3-container">
         <table className="w3-table-all">
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (

@@ -46,15 +46,30 @@ const AuthProvider = ({ children }) => {
   // wishlist
   const addWishlist = (data) => {
     // setLoading(true);
-    return axios.post("http://localhost:5000/addWishlist", data)
+    return axios.post("http://localhost:5000/addWishlist", data);
   };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      const userEmail = createUser?.email || user.email;
+      const loggedUser = { email: userEmail };
       if (user) {
         setUser(user);
         console.log("user:", user);
         // setLoading(false)
+
+        // if user exists then get jwt token
+        
+        axios.post('http://localhost:5000/jwt',loggedUser, { withCredentials: true })
+        .then((res) => {
+          console.log('token response:',res.data);
+        });
+      }
+      else{
+        axios.post('http://localhost:5000/logout', loggedUser, { withCredentials: true })
+        .then((res) => {
+          console.log('token response:',res.data);
+        })
       }
       setLoading(false);
     });
@@ -69,7 +84,7 @@ const AuthProvider = ({ children }) => {
     loginUser,
     googleLogin,
     logOut,
-    addWishlist
+    addWishlist,
   };
 
   return (

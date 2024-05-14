@@ -10,11 +10,9 @@ const NabBar = () => {
       <li className="text-base mr-2">
         <NavLink to="/">Home</NavLink>
       </li>
-
       <li className="text-base mr-2">
         <NavLink to="/addblog">Add Blog</NavLink>
       </li>
-
       <li className="text-base mr-2">
         <NavLink to="/allblogs">All blogs</NavLink>
       </li>
@@ -60,12 +58,12 @@ const NabBar = () => {
                 {nabLinks}
               </ul>
             </div>
-            <a className="btn btn-ghost text-xl md:text-3xl md:font-extrabold">
+            <p className="btn btn-ghost text-xl md:text-3xl md:font-extrabold">
               <Link to="/">
                 <img className=" w-24 md:w-44" src={webName} alt="" />
                 {/* News <span className="text-green-500">BLOG</span> */}
               </Link>
-            </a>
+            </p>
           </div>
           <div className="navbar-center hidden lg:flex ">
             <ul className="menu menu-horizontal px-1">{nabLinks}</ul>

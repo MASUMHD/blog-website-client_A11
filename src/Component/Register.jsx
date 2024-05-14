@@ -44,12 +44,6 @@ const Register = () => {
 
     createUser(email, password)
       .then((result) => {
-        // updateUserProfile( data.name, data.image)
-        // .then(() => {
-
-        //     navigate(from);
-
-        // })
         if (result.user) {
           navigate(from);
         }

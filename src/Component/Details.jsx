@@ -4,6 +4,7 @@ import moment from "moment";
 import { toast } from "react-toastify";
 import OneComment from "./OneComment";
 import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 const Details = () => {
   const vewDetails = useLoaderData();
@@ -53,16 +54,33 @@ const Details = () => {
   };
 
   // comment section
-  const [comments, setComments] = useState([]);
+  // const [comments, setComments] = useState([]);
   // console.log("ccccccccccccc", comments);
-  useEffect(() => {
-    fetch(`http://localhost:5000/comments?id=${_id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setComments(data);
-      });
-  }, [_id]);
+  // useEffect(() => {
+  //   fetch(`http://localhost:5000/comments?id=${_id}`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       setComments(data);
+  //     });
+  // }, [_id]);
+
+  // Tanstack query for comment:
+  const { data: comments ,isPending } = useQuery({
+    queryKey: ["comments"],
+    queryFn: async () => {
+      const res = await fetch(`http://localhost:5000/comments?id=${_id}`);
+      
+      return res.json();
+    },
+  }) 
+
+
+  if(isPending){
+    return <p>Loading...</p>
+  }
+
+
 
   return (
     <div className="">
@@ -116,11 +134,12 @@ const Details = () => {
                   id=""
                   cols="30"
                   rows="10"
+                  required
                   placeholder="Write a comment...."
                   className="w-full h-40 border-2 text-xl pt-5 textarea textarea-bordered rounded-xl"
                 ></textarea>
               ) : (
-                <p className="text-xl">Your are not allowed to comment</p>
+                <p className="text-xl">Your are not allowed to comments</p>
               )}
               <input
                 type="submit"
