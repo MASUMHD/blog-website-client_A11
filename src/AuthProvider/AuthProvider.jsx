@@ -46,7 +46,7 @@ const AuthProvider = ({ children }) => {
   // wishlist
   const addWishlist = (data) => {
     // setLoading(true);
-    return axios.post("http://localhost:5000/addWishlist", data);
+    return axios.post("https://blogs-news-pi.vercel.app/addWishlist", data);
   };
 
   useEffect(() => {
@@ -60,13 +60,13 @@ const AuthProvider = ({ children }) => {
 
         // if user exists then get jwt token
         
-        axios.post('http://localhost:5000/jwt',loggedUser, { withCredentials: true })
+        axios.post('https://blogs-news-pi.vercel.app/jwt',loggedUser, { withCredentials: true })
         .then((res) => {
           console.log('token response:',res.data);
         });
       }
       else{
-        axios.post('http://localhost:5000/logout', loggedUser, { withCredentials: true })
+        axios.post('https://blogs-news-pi.vercel.app/logout', loggedUser, { withCredentials: true })
         .then((res) => {
           console.log('token response:',res.data);
         })

@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../Hook/useAuth";
-import webName from "../assets/Sport News.png"
+import webName from "../assets/Sport News.png";
 
 const NabBar = () => {
   const { user, logOut } = useAuth();
@@ -10,18 +10,28 @@ const NabBar = () => {
       <li className="text-base mr-2">
         <NavLink to="/">Home</NavLink>
       </li>
-      <li className="text-base mr-2">
+      {/* <li className="text-base mr-2">
         <NavLink to="/addblog">Add Blog</NavLink>
-      </li>
+      </li> */}
+      {user && (
+        <li className="text-base mr-2">
+          <NavLink to="/addblog">Add Blog</NavLink>
+        </li>
+      )}
       <li className="text-base mr-2">
         <NavLink to="/allblogs">All blogs</NavLink>
       </li>
       <li className="text-base mr-2">
         <NavLink to="/featuredblogs">Featured Blogs</NavLink>
       </li>
-      <li className="text-base mr-2">
+      {/* <li className="text-base mr-2">
         <NavLink to="/wishlist">Wishlist</NavLink>
-      </li>
+      </li> */}
+      {user && (
+        <li className="text-base mr-2">
+          <NavLink to="/wishlist">Wishlist</NavLink>
+        </li>
+      )}
     </>
   );
 

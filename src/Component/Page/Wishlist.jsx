@@ -9,7 +9,7 @@ const Wishlist = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:5000/wishlist?email=${user?.email}`,{credentials: 'include'})
+      fetch(`https://blogs-news-pi.vercel.app/wishlist?email=${user?.email}`,{credentials: 'include'})
         .then((res) => res.json())
         .then((data) => {
           setWishlistData(data);
@@ -28,7 +28,7 @@ const Wishlist = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/wishlist/${_id}`, {
+        fetch(`https://blogs-news-pi.vercel.app/wishlist/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -47,7 +47,7 @@ const Wishlist = () => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10  md:ml-20 md:mr-10">
-      {wishlist.map((data) => (
+      {wishlist.length && wishlist.map((data) => (
         <div key={data._id}>
           <div className="max-w-sm p-6 bg-white border-2 border-gray-200 rounded-lg shadow-xl shadow-gray-300 pr-5 mt-10 ml-3">
             <div className="flex flex-col items-center ">

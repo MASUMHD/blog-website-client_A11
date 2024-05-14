@@ -30,7 +30,7 @@ const AddBlog = () => {
     console.log(newBlog);
 
     // send data to server
-    fetch("http://localhost:5000/addBlogs", {
+    fetch("https://blogs-news-pi.vercel.app/addBlogs", {
       method: "POST",
       headers: {
         "content-type": "application/json",

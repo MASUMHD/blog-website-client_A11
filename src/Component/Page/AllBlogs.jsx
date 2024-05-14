@@ -14,7 +14,7 @@ const AllBlogs = () => {
       setBlogs(loadedBlogs);
     }
     else {
-      axios(`http://localhost:5000/all?search=title=${search}`)
+      axios(`https://blogs-news-pi.vercel.app/all?search=title=${search}`)
       .then(res => {
         setBlogs(res.data)
       })

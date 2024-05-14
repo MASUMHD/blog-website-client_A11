@@ -35,7 +35,7 @@ const Update = () => {
     };
     console.log("nnnnnnnnnnn", newBlog);
     // send data to server
-    fetch(`http://localhost:5000/allBlogs/${_id}`, {
+    fetch(`https://blogs-news-pi.vercel.app/allBlogs/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

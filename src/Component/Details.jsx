@@ -36,7 +36,7 @@ const Details = () => {
     };
     console.log(userComment);
 
-    fetch("http://localhost:5000/comment", {
+    fetch("https://blogs-news-pi.vercel.app/comment", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -57,7 +57,7 @@ const Details = () => {
   // const [comments, setComments] = useState([]);
   // console.log("ccccccccccccc", comments);
   // useEffect(() => {
-  //   fetch(`http://localhost:5000/comments?id=${_id}`)
+  //   fetch(`https://blogs-news-pi.vercel.app/comments?id=${_id}`)
   //     .then((res) => res.json())
   //     .then((data) => {
   //       console.log(data);
@@ -69,7 +69,7 @@ const Details = () => {
   const { data: comments ,isPending } = useQuery({
     queryKey: ["comments"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/comments?id=${_id}`);
+      const res = await fetch(`https://blogs-news-pi.vercel.app/comments?id=${_id}`);
       
       return res.json();
     },

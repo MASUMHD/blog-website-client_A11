@@ -30,7 +30,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => fetch("http://localhost:5000/allBlogs"),
+        loader: () => fetch("https://blogs-news-pi.vercel.app/allBlogs"),
       },
       {
         path: "/addblog",
@@ -43,12 +43,12 @@ const router = createBrowserRouter([
       {
         path: "/allblogs",
         element: <AllBlogs />,
-        loader: () => fetch("http://localhost:5000/allBlogs"),
+        loader: () => fetch("https://blogs-news-pi.vercel.app/allBlogs"),
       },
       {
         path: "/featuredblogs",
         element: <FeaturedBlogs />,
-        loader: () => fetch("http://localhost:5000/allBlogs"),
+        loader: () => fetch("https://blogs-news-pi.vercel.app/allBlogs"),
       },
       {
         path: "/wishlist",
@@ -74,7 +74,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/allBlogs/${params.id}`),
+          fetch(`https://blogs-news-pi.vercel.app/allBlogs/${params.id}`),
       },
       {
         path: "update/:id",
@@ -84,7 +84,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/allBlogs/${params.id}`),
+          fetch(`https://blogs-news-pi.vercel.app/allBlogs/${params.id}`),
       },
     ],
   },
