@@ -41,10 +41,13 @@ const SingleBlogs = ({ blog }) => {
   };
 
   return (
-    <div>
+    <div 
+    
+    >
       <div className="max-w-sm p-6 bg-white border-2 border-gray-200 rounded-lg shadow-xl shadow-gray-300  pr-5 mt-10 ml-3">
         <div className="flex flex-col items-center ">
-          <div className="max-w-xl h-[520px] p-4 rounded-md shadow-xl border   dark:text-gray-900">
+          <div 
+          className="max-w-xl h-[520px] p-4 rounded-md shadow-xl border   dark:text-gray-900">
             <img
               src={image_url}
               alt=""

@@ -1,91 +1,92 @@
+import { useQuery } from "@tanstack/react-query";
 import {
+  createColumnHelper,
   flexRender,
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 import { useMemo } from "react";
-import { useLoaderData } from "react-router-dom";
 
 const FeaturedBlogs = () => {
-  const blogs = useLoaderData();
-  // console.log(blogs)
+ 
 
-  const blogsCount = blogs.map(blog => ({
-    ...blog,wordCount: blog.long_description.split('').length
-  }))
-  const sortedBLogs = blogsCount.sort((a, b) => b.wordCount - a.wordCount)
-  const topBlogs = sortedBLogs.slice(0, 10)
+  const { data: blogs, isLoading } = useQuery({
+    queryKey: ['featuredBlogs'],
+    queryFn: async () => {
+      const res = await fetch('https://blogs-news-pi.vercel.app/allBlogs')
+      return res.json()
+    }
+  })
 
-  const data = useMemo(() => topBlogs, [topBlogs]);
+  const topBlogs = blogs?.sort((a, b) => b.long_description.length - a.long_description.length).slice(0, 10)
 
+  const data = useMemo(() => topBlogs, [topBlogs])
 
+  const columnHelper = createColumnHelper()
   const columns = [
-    {
-      header: "No",
-      cell: (info) => {
-        return info.row.index + 1;
-      },
-    },
-    {
-      header: "Profile Picture",
-      accessorKey: "userImage",
-      cell: (info) => {
-        return (
-          <div className="mask mask-squircle w-12 h-12">
-            <img src={info.getValue()} alt="Avatar Tailwind CSS Component" />
-          </div>
-        );
-      },
-    },
-    {
-      header: "Blog Title",
-      accessorKey: "title",
-    },
-    {
-      header: "Blog owner",
-      accessorKey: "name",
-    },
-  ];
+    columnHelper.accessor('No', {
+      cell: info => <span>{info.row.index + 1}</span>,
+      header: 'No'
+    }),
+    columnHelper.accessor('userImage', {
+      cell: (info) => <img className="w-8 h-8 md:w-12 md:h-12 rounded-full" src={info.getValue()} />,
+      header: 'Profile Picture'
+    }),
+    columnHelper.accessor('name', {
+      cell: info => <span>{info.getValue()}</span>,
+      header: 'Name'
+    }),
+    columnHelper.accessor('title', {
+      cell: info => <span>{info.getValue()}</span>,
+      header: 'Title'
+    }),
+  ]
 
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-  });
+  })
+
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
+
   return (
-    <div>
-      {/* <h1>Featured Blogs {blogs.length}</h1> */}
+    <div className="overflow-x-auto mt-12 mb-6 rounded-xl md:ml-20 md:mr-20 w3-container">
 
-      <div className="overflow-x-auto mt-12 mb-6 rounded-xl md:ml-20 md:mr-20 w3-container">
-        <table className="w3-table-all">
-          <thead>
-            {table.getHeaderGroups().map((headerGroup) => (
+      <table className=" w3-table-all">
+        <thead>
+          {
+            table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <th key={header.id}>
-                    {flexRender(
-                      header.column.columnDef.header,
-                      header.getContext()
-                    )}
-                  </th>
-                ))}
+                {
+                  headerGroup.headers.map((header) => (
+                    <th key={header.id}>
+                      {flexRender(header.column.columnDef.header, header.getContext())}
+                    </th>
+                  ))
+                }
               </tr>
-            ))}
-          </thead>
-
-          <tbody>
-            {table.getRowModel().rows.map((row) => (
+            ))
+          }
+        </thead>
+        <tbody>
+          {
+            table.getRowModel().rows.map((row) => (
               <tr key={row.id}>
-                {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </td>
-                ))}
+                {
+                  row.getVisibleCells().map((cell) => (
+                    <td key={cell.id}>
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </td>
+                  ))
+                }
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            ))
+          }
+        </tbody>
+      </table>
     </div>
   );
 };

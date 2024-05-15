@@ -1,13 +1,12 @@
-import { Link,  useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../Hook/useAuth";
 import moment from "moment";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion";
 
 const Blog = ({ blog }) => {
-    const { user, addWishlist } = useAuth();
+  const { user, addWishlist } = useAuth();
   const { image_url, title, short_description, category, _id } = blog;
-
-  
 
   const navigate = useNavigate();
 
@@ -27,16 +26,19 @@ const Blog = ({ blog }) => {
       navigate("/login");
       return;
     }
-    addWishlist(data)
-    .then((res) => {
+    addWishlist(data).then((res) => {
       console.log(res.data);
       toast.success("Your wishlist has been saved");
 
-      navigate('/wishlist');
+      navigate("/wishlist");
     });
   };
   return (
-    <div>
+    <motion.div animate={{
+      scale: [1, 2, 2, 1, 1],
+      rotate: [0, 0, 270, 270, 0],
+      borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+    }}>
       <div
         key={_id}
         className="max-w-sm p-6 bg-white border-2 border-gray-200  rounded-lg shadow-xl shadow-gray-300 pr-5 mt-10 ml-3"
@@ -55,14 +57,10 @@ const Blog = ({ blog }) => {
                   {category}.
                 </span>
               </span>
-              <h2 className="text-xl font-extrabold tracking-wide">
-                {title}
-              </h2>
+              <h2 className="text-xl font-extrabold tracking-wide">{title}</h2>
             </div>
             <div className="mb-2 ">
-              <p className="text-sm dark:text-gray-600">
-                {short_description}
-              </p>
+              <p className="text-sm dark:text-gray-600">{short_description}</p>
             </div>
             <div className="flex gap-2 justify-around mt-8">
               <Link to={`/Details/${_id}`}>
@@ -81,7 +79,7 @@ const Blog = ({ blog }) => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

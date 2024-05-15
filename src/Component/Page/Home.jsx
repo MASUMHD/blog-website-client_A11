@@ -9,6 +9,8 @@ import Last from "../Last";
 const Home = () => {
   const blogs = useLoaderData();
 
+  const sliceBlogs = blogs.slice(0, 6);
+
   return (
     <div>
       <Bannar />
@@ -19,7 +21,7 @@ const Home = () => {
         </h1>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10  md:ml-20 md:mr-10">
-        {blogs.slice(0, 6).map((blog) => (
+        {sliceBlogs.map((blog) => (
           <SingleBlogs key={blog._id} blog={blog}></SingleBlogs>
         ))}
       </div>

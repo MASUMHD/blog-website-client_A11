@@ -48,6 +48,7 @@ const AuthProvider = ({ children }) => {
     // setLoading(true);
     return axios.post("https://blogs-news-pi.vercel.app/addWishlist", data);
   };
+  
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
