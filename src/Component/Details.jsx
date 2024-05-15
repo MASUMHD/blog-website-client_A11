@@ -77,7 +77,7 @@ const Details = () => {
 
 
   if(isPending){
-    return <p>Loading...</p>
+    return <div className="text-center mt-10"><span className="loading loading-bars loading-lg"></span></div>
   }
 
 

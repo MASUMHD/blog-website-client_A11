@@ -49,7 +49,7 @@ const FeaturedBlogs = () => {
   })
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return <div className="text-center mt-10 "><span className="loading loading-bars loading-lg text-center"></span></div>
   }
 
   return (
